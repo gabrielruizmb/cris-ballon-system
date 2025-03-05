@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import global.Menu;
 
 public class App {

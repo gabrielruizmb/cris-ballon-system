@@ -3,9 +3,18 @@ package product;
 import java.math.BigDecimal;
 
 public class Product {
+    private int id;
     private String name;
     private BigDecimal price;
     private String description;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
 
     public void setName(String name) {
         this.name = name;

@@ -7,14 +7,14 @@ import product.ProductCrud;
 public class Menu {
 
     public static Scanner scanner = new Scanner(System.in);
-    private static int choice = 1;
-
+    
     public static void mainMenu() {
-        while (choice != 4) {
+        int choice = 1;
+        while (choice != 0) {
             System.out.print("\n=========================\n");
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu principal~~~\n\n");
-            System.out.print(" 1.Produtos \n 2.Clientes \n 3.Pedidos \n\n 4.Sair \n\n");
+            System.out.print(" 1.Produtos \n 2.Clientes \n 3.Pedidos \n\n 0.Sair \n\n");
             System.out.print("Escolha uma opção: ");
             choice = scanner.nextInt();
     
@@ -30,18 +30,22 @@ public class Menu {
     }
 
     private static void productMenu() {
-        while (choice != 5) {
-            System.out.print("\n=========================\n");
+        int choice = 1;
+        while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu produtos~~~\n\n");
             System.out.print(" 1.Cadastrar \n 2.Editar \n 3.Excluir\n");
-            System.out.print(" 4.Ver produtos \n\n 5.Voltar\n\n");
+            System.out.print(" 4.Ver produtos \n\n 0.Voltar\n\n");
             System.out.print("Escolha uma opção: ");
             choice = scanner.nextInt();
     
             switch (choice) {
                 case 1:
-                    ProductCrud.createProduct();
+                    ProductCrud.create();
+                    break;
+
+                case 4:
+                    ProductCrud.read();
                     break;
             
                 default:
