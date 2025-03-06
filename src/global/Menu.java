@@ -50,6 +50,10 @@ public class Menu {
                     ProductCrud.create();
                     break;
 
+                case 2:
+                    ProductCrud.update();
+                    break;
+
                 case 4:
                     ProductCrud.read();
                     break;
