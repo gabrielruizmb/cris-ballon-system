@@ -90,34 +90,4 @@ public class ProductCrud {
         Menu.scanner.nextLine();
     }
 
-    public static void delete() {
-        int productNumber;
-
-        System.out.print("\n---SISTEMA CRIS BALLON---\n");
-        System.out.print("~~~Excluir um produto~~~\n");
-        listAll();
-        System.out.print("Escolha um produto pelo n.° para excluir: ");
-        productNumber = Menu.scanner.nextInt();
-
-        System.out.printf("\nProduto n.° %d \n", productNumber);
-
-        System.out.printf("Nome: %s \n", 
-            products.get(productNumber).getName());
-
-        System.out.printf("Preço: %.2f \n", 
-            products.get(productNumber).getPrice().doubleValue());
-        
-        System.out.printf("Descrição: %s \n\n", 
-            products.get(productNumber).getDescription());
-
-        // Menu.scanner.nextLine();
-        // System.out.print("Pressione Enter para comfirmar a exclusão . . .");
-
-        products.remove(productNumber);
-        System.out.print("Produto excluido!\n\n");
-        
-        Menu.scanner.nextLine();
-        System.out.print("Pressione Enter para voltar . . .");
-        Menu.scanner.nextLine();
-    }
 }
