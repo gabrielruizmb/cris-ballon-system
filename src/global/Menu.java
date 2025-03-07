@@ -44,7 +44,7 @@ public class Menu {
             System.out.print("~~~Menu produtos~~~\n\n");
             System.out.print(" 1.Cadastrar produto \n 2.Editar produto\n");
             System.out.print(" 3.Excluir produto \n 4.Ver produtos");
-            System.out.print(" \n\n 0.Sair \n\n");
+            System.out.print(" \n\n 0.Voltar \n\n");
             System.out.print("Escolha uma opção: ");
             choice = scanner.nextInt();
     
@@ -55,6 +55,10 @@ public class Menu {
 
                 case 2:
                     ProductCrud.update();
+                    break;
+
+                case 3:
+                    ProductCrud.delete();
                     break;
 
                 case 4:
