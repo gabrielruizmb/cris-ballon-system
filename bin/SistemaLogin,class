@@ -1,0 +1,82 @@
+package SistemaLogin;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SistemaLogin {
+
+    static class Usuario {
+        String nome;
+        String usuario;
+        String dataNascimento;
+        String cpf;
+        String sexo;
+        String endereco;
+        String senha;
+
+        public Usuario(String nome, String usuario, String dataNascimento, String cpf, String sexo, String endereco, String senha) {
+            this.nome = nome;
+            this.usuario = usuario;
+            this.dataNascimento = dataNascimento;
+            this.cpf = cpf;
+            this.sexo = sexo;
+            this.endereco = endereco;
+            this.senha = senha;
+        }
+    }
+
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static Usuario usuarioLogado = null;
+
+    static {
+        // Adiciona um usuário padrão para teste
+        usuarios.add(new Usuario("Administrador", "admin", "01/01/2000", "12345678901", "Masculino", "Endereço padrão", "admin123"));
+    }
+
+    public static boolean login() {
+        System.out.println("\n--- LOGIN ---");
+        System.out.print("Usuário: ");
+        String usuarioInput = scanner.nextLine();
+
+        System.out.print("Senha: ");
+        String senhaInput = scanner.nextLine();
+
+        for (Usuario u : usuarios) {
+            if (u.usuario.equals(usuarioInput) && u.senha.equals(senhaInput)) {
+                System.out.println("\nLogin bem-sucedido! Bem-vindo ao sistema.");
+                usuarioLogado = u;
+                return true;
+            }
+        }
+
+        System.out.println("Usuário ou senha inválidos. Tente novamente.");
+        return login();
+    }
+
+    public static void exibirMenu() {
+        while (true) {
+            System.out.println("\n--- MENU DE USUÁRIOS ---");
+            System.out.println("1. Cadastrar usuário");
+            System.out.println("2. Editar usuário");
+            System.out.println("3. Voltar ao menu principal");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    UsuarioCrud.cadastrarUsuario(usuarios);
+                    break;
+                case 2:
+                    UsuarioCrud.editarUsuario(usuarioLogado, usuarios);
+                    break;
+                case 3:
+                    System.out.println("Voltando ao menu principal...");
+                    return;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
+    }
+}
