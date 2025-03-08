@@ -89,6 +89,9 @@ public class Menu {
                 case 2:
                     CustomerCrud.update();
                     break;
+                case 3:
+                    CustomerCrud.delete();
+                    break;
                 case 4:
                     CustomerCrud.read();
                     break;
