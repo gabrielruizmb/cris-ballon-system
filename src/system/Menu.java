@@ -1,7 +1,9 @@
-package global;
+package system;
 
 import java.util.Scanner;
 
+import customer.CustomerCrud;
+import order.OrderCrud;
 import product.ProductCrud;
 
 public class Menu {
@@ -22,6 +24,14 @@ public class Menu {
             switch (choice) {
                 case 1: 
                     productMenu();  
+                    break;
+
+                case 2:
+                    customerMenu();
+                    break;
+
+                case 3:
+                    orderMenu();
                     break;
 
                 case 4: 
@@ -62,6 +72,60 @@ public class Menu {
                     ProductCrud.read();
                     break;
             
+                default:
+                    break;
+            }
+        }
+    }
+
+    private static void customerMenu() {
+        int choice = 1;
+        while (choice != 0) {
+            System.out.print("\n---SISTEMA CRIS BALLON---\n");
+            System.out.print("~~~Menu clientes~~~\n\n");
+            System.out.print(" 1.Cadastrar cliente \n 2.Editar cliente\n");
+            System.out.print(" 3.Excluir cliente \n 4.Ver clientes");
+            System.out.print(" \n\n 0.Voltar \n\n");
+            System.out.print("Escolha uma opção: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    CustomerCrud.create();
+                    break;
+                case 2:
+                    CustomerCrud.update();
+                    break;
+                case 3:
+                    CustomerCrud.delete();
+                    break;
+                case 4:
+                    CustomerCrud.read();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void orderMenu() {
+        int choice = 1;
+        while (choice != 0) {
+            System.out.print("\n---SISTEMA CRIS BALLON---\n");
+            System.out.print("~~~Menu de pedidos~~~\n\n");
+            System.out.print(" 1.Abrir novo pedido \n 2.Ver pedidos");
+            System.out.print(" \n\n 0.Voltar \n\n");
+            System.out.print("Escolha uma opção: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    OrderCrud.create();
+                    break;
+                case 2:
+                    OrderCrud.read();
+                    break;
+
                 default:
                     break;
             }
