@@ -1,11 +1,12 @@
 package customer;
 
 import java.util.*;
-import global.Menu;
+
+import system.Menu;
 
 public class CustomerCrud {
     
-    private static ArrayList<Customer> customers = new ArrayList<>();
+    public static ArrayList<Customer> customers = new ArrayList<>();
 
     public static void listAll() {
         System.out.print("\n~~~Lista de clientes~~~\n\n");

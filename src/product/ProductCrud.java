@@ -2,7 +2,7 @@ package product;
 
 import java.util.ArrayList;
 
-import global.Menu;
+import system.Menu;
 
 public class ProductCrud {
     private static ArrayList<Product> products = new ArrayList<>();

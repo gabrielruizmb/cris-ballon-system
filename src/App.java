@@ -1,4 +1,4 @@
-import global.Menu;
+import system.Menu;
 
 public class App {
     public static void main(String[] args) throws Exception {
