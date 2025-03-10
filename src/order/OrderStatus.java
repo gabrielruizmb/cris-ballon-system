@@ -1,7 +1,7 @@
 package order;
 
 public enum OrderStatus {
-    STATUS1("Aberto", 1),
+    STATUS1("ABERTO", 1),
     STATUS2("Em produção", 2),
     STATUS3("Concluído", 3),
     STATUS4("Entregue", 4),
