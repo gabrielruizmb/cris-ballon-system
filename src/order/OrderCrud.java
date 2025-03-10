@@ -54,6 +54,17 @@ public class OrderCrud {
         Menu.scanner.nextLine();
     }
 
+    public static void update() {
+        int orderNumber = 0;
+
+        System.out.print("\n---SISTEMA CRIS BALLON---\n");
+        System.out.print("\n~~~Atualizar pedido~~~\n");
+        listAll();
+        System.out.print("Escolha um pedido pelo n° pela atualizar:");
+        orderNumber = Menu.scanner.nextInt();
+        System.out.printf("\nAtualizar pedido n°: %d", orderNumber);
+    }
+
     public static void read() {
         listAll();
         Menu.scanner.nextLine();
