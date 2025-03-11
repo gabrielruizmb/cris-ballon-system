@@ -1,5 +1,6 @@
 package customer;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import system.Menu;
@@ -13,6 +14,15 @@ public class CustomerCrud {
         for (int i = 0; i < customers.size(); i++) {
             System.out.print("+++++++++++++++++++++++++\n");
             System.out.printf("Cliente n.° %d \n", i);
+
+            System.out.printf("Data de criação: %d/%d/%d às %d:%d:%d \n", 
+                customers.get(i).getCreationDate().getDayOfMonth(),
+                customers.get(i).getCreationDate().getMonthValue(),
+                customers.get(i).getCreationDate().getYear(),
+                customers.get(i).getCreationDate().getHour(),
+                customers.get(i).getCreationDate().getMinute(),
+                customers.get(i).getCreationDate().getSecond());
+
             System.out.printf("Nome: %s \n", customers.get(i).getName());
             System.out.printf("Telefone: %s \n", customers.get(i).getPhone());
             System.out.printf("Endereço: %s \n\n", customers.get(i).getAddress());
@@ -34,6 +44,8 @@ public class CustomerCrud {
 
         System.out.print("Informe o endereço do cliente: ");
         customer.setAddress(Menu.scanner.nextLine());
+
+        customer.setCreationDate(LocalDateTime.now());
 
         customers.add(customer);
 

@@ -1,8 +1,11 @@
 package product;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-public class Product {
+import system.CreationDate;
+
+public class Product extends CreationDate{
     private String name;
     private BigDecimal price;
     private String description;
@@ -33,9 +36,10 @@ public class Product {
 
     public Product() {}
 
-    public Product(String name, String description, BigDecimal price) {
+    public Product(String name, String description, BigDecimal price, LocalDateTime creationDate) {
         this.name = name;
         this.description = description;
         this.price = price;
+        setCreationDate(creationDate);
     }
 }
