@@ -55,15 +55,60 @@ public class OrderCrud {
     }
 
     public static void update() {
-        int orderNumber = 0;
+        int orderNumber = 0, newStatus = 0;
 
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
-        System.out.print("\n~~~Atualizar pedido~~~\n");
+        System.out.print("\n~~~Editar pedido~~~\n");
         listAll();
-        System.out.print("Escolha um pedido pelo n° pela atualizar:");
+        System.out.print("Escolha um pedido pelo n° para editar: ");
         orderNumber = Menu.scanner.nextInt();
-        System.out.printf("\nAtualizar pedido n°: %d", orderNumber);
+        System.out.printf("\n~~~Editar pedido n°: %d~~~\n", orderNumber);
+        System.out.printf("Status: %s \n\n", orders.get(orderNumber).getStatus());
+
+        System.out.printf("Data de abertura: %d/%d/%d às %d:%d:%d \n", 
+            orders.get(orderNumber).getDate().getDayOfMonth(),
+            orders.get(orderNumber).getDate().getMonthValue(),
+            orders.get(orderNumber).getDate().getYear(),
+            orders.get(orderNumber).getDate().getHour(),
+            orders.get(orderNumber).getDate().getMinute(),
+            orders.get(orderNumber).getDate().getSecond());
+
+        System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getName());
+        System.out.printf("Telefone: %s \n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getPhone());
+        System.out.printf("Endereço: %s \n\n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getAddress());
+        System.out.printf("Descrição do pedido: %s \n\n", orders.get(orderNumber).getDescription());
+
+        System.out.print("~~~Novas informações do pedido~~~\n\n");
+        System.out.print("Status: \n\n");
+
+        for(OrderStatus status : OrderStatus.values()) {
+            System.out.printf("%d)%s \n", status.getNumber(), status.getName());
+        }
+
+        System.out.print("\nEscolha um status: ");
+        newStatus = Menu.scanner.nextInt();
+
+        switch (newStatus) {
+            case 1:
+                orders.get(orderNumber).setStatus(OrderStatus.STATUS1.getName());
+                break;
+            case 2:
+                orders.get(orderNumber).setStatus(OrderStatus.STATUS2.getName());
+                break;
+            case 3:
+                orders.get(orderNumber).setStatus(OrderStatus.STATUS3.getName());
+                break;
+            case 4:
+                orders.get(orderNumber).setStatus(OrderStatus.STATUS4.getName());
+                break;
+            case 5:
+                orders.get(orderNumber).setStatus(OrderStatus.STATUS5.getName());
+                break;
+            default:
+                break;
+        }
     }
+    
 
     public static void read() {
         listAll();
