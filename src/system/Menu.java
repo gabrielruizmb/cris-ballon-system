@@ -113,8 +113,9 @@ public class Menu {
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu de pedidos~~~\n\n");
-            System.out.print(" 1.Abrir novo pedido \n 2.Editar pedido\n");
-            System.out.print(" 3.Ver pedidos \n\n 0.Voltar \n\n");
+            System.out.print(" 1.Abrir novo pedido \n 2.Editar pedido \n");
+            System.out.print(" 3.Excluir pedido \n 4.Ver pedidos");
+            System.out.print(" \n\n 0.Voltar \n\n");
             System.out.print("Escolha uma opção: ");
             choice = scanner.nextInt();
 
@@ -126,6 +127,9 @@ public class Menu {
                     OrderCrud.update();
                     break;
                 case 3:
+                    OrderCrud.delete();
+                    break;
+                case 4:
                     OrderCrud.read();
                     break;
 

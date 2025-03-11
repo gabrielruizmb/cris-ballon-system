@@ -25,6 +25,16 @@ public class OrderCrud {
                 orders.get(i).getDate().getMinute(),
                 orders.get(i).getDate().getSecond());
 
+            if (orders.get(i).getStatus().equals("Entregue") || orders.get(i).getStatus().equals("Cancelado")) {
+                System.out.printf("Data de encerramento: %d/%d/%d às %d:%d:%d \n", 
+                    orders.get(i).getClosingDate().getDayOfMonth(),
+                    orders.get(i).getClosingDate().getMonthValue(),
+                    orders.get(i).getClosingDate().getYear(),
+                    orders.get(i).getClosingDate().getHour(),
+                    orders.get(i).getClosingDate().getMinute(),
+                    orders.get(i).getClosingDate().getSecond());
+            }    
+
             System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers.get(orders.get(i).getClientNumber()).getName());
             System.out.printf("Telefone: %s \n", CustomerCrud.customers.get(orders.get(i).getClientNumber()).getPhone());
             System.out.printf("Endereço: %s \n\n", CustomerCrud.customers.get(orders.get(i).getClientNumber()).getAddress());
@@ -50,6 +60,13 @@ public class OrderCrud {
         orders.add(order);
 
         System.out.print("\nPedido aberto com sucesso!\n\n");
+        System.out.print("Pressione Enter para voltar . . .");
+        Menu.scanner.nextLine();
+    }
+    
+    public static void read() {
+        listAll();
+        Menu.scanner.nextLine();
         System.out.print("Pressione Enter para voltar . . .");
         Menu.scanner.nextLine();
     }
@@ -114,6 +131,10 @@ public class OrderCrud {
             }
         }
 
+        if (newStatus == 4 || newStatus == 5) {
+            orders.get(orderNumber).setClosingDate(LocalDateTime.now());
+        }
+
         System.out.print("\nDeseja alterar o cliente deste pedido(s/n): ");
         if (Menu.scanner.next().equals("s")) {
             CustomerCrud.listAll();
@@ -129,15 +150,37 @@ public class OrderCrud {
         }
 
         System.out.print("\nPedido atualizado! \n\n");
+        Menu.scanner.nextLine();
         System.out.print("Pressione Enter para voltar . . .");
         Menu.scanner.nextLine();
     }
-    
 
-    public static void read() {
+    public static void delete() {
+        int index = 0;
+        String option = "s";
+
         listAll();
-        Menu.scanner.nextLine();
-        System.out.print("Pressione Enter para voltar . . .");
-        Menu.scanner.nextLine();
+        while (option.equals("s")) {
+
+            System.out.print("\nInforme o n° do pedido que deseja excluir: ");
+            index = Menu.scanner.nextInt();
+            
+            if (index < 0 || index >= orders.size()) {
+                System.out.print("Número de pedido inválido! ");
+                System.out.print("Informe um n° válido. \n\n");
+                System.out.print("Deseja tentar novamente(s/n)? ");
+                option = Menu.scanner.next();
+                if (!option.equals("s")) {
+                    return;
+                }
+            } else {
+                orders.remove(index);
+                System.out.print("\nPedido excluido com sucesso!");
+                Menu.scanner.nextLine();
+                System.out.print("\n\nPressione Enter para voltar . . .");
+                Menu.scanner.nextLine();
+                return;        
+            }
+        }
     }
 }
