@@ -7,7 +7,8 @@ public class Order {
     String description;
     String status;
     LocalDateTime date;
-    
+    LocalDateTime closingDate;
+
     public int getClientNumber() {
         return clientNumber;
     }
@@ -39,6 +40,14 @@ public class Order {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public LocalDateTime getClosingDate() {
+        return closingDate;
+    }
+
+    public void setClosingDate(LocalDateTime closingDate) {
+        this.closingDate = closingDate;
     }
 
     public Order() {}
