@@ -2,11 +2,15 @@ package order;
 
 import java.time.LocalDateTime;
 
-public class Order {
+import system.CreationDate;
+
+// Herdando atributos e métodos da classe CreationDate
+public class Order extends CreationDate {
     int clientNumber;
     String description;
     String status;
-    LocalDateTime date;
+    //LocalDateTime creationDate;       <-- Agora herdamos este atributo e os 
+    //                                      métodos da classe CreationDate.
     LocalDateTime closingDate;
 
     public int getClientNumber() {
@@ -33,14 +37,16 @@ public class Order {
         this.status = status;
     }
 
+    /*  Métodos herdados de CreationDate
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    } 
+    */
 
     public LocalDateTime getClosingDate() {
         return closingDate;
@@ -52,10 +58,10 @@ public class Order {
 
     public Order() {}
     
-    public Order(int clientNumber, String description, String status, LocalDateTime date) {
+    public Order(int clientNumber, String description, String status, LocalDateTime creationDate) {
         this.clientNumber = clientNumber;
         this.description = description;
         this.status = status;
-        this.date = date;
+        setCreationDate(creationDate);
     }
 }
