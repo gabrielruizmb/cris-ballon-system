@@ -1,6 +1,10 @@
 package customer;
 
-public class Customer {
+import java.time.LocalDateTime;
+
+import system.CreationDate;
+
+public class Customer extends CreationDate{
     private String name;
     private String phone;
     private String address;
@@ -31,9 +35,10 @@ public class Customer {
 
     public Customer() {}
 
-    public Customer(String name, String phone, String address) {
+    public Customer(String name, String phone, String address, LocalDateTime creationDate) {
         this.name = name;
         this.phone = phone;
         this.address = address;
+        setCreationDate(creationDate);
     }
 }

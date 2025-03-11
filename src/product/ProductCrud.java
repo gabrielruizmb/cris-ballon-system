@@ -1,5 +1,6 @@
 package product;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import system.Menu;
@@ -12,7 +13,16 @@ public class ProductCrud {
         for (int i = 0; i < products.size(); i++) {
             System.out.print("+++++++++++++++++++++++++\n");
             System.out.printf("Produto n.° %d \n", i);
-            System.out.printf("Nome: %s \n", products.get(i).getName());
+            
+            System.out.printf("Data de criação: %d/%d/%d às %d:%d:%d \n", 
+                products.get(i).getCreationDate().getDayOfMonth(),
+                products.get(i).getCreationDate().getMonthValue(),
+                products.get(i).getCreationDate().getYear(),
+                products.get(i).getCreationDate().getHour(),
+                products.get(i).getCreationDate().getMinute(),
+                products.get(i).getCreationDate().getSecond());
+            
+                System.out.printf("Nome: %s \n", products.get(i).getName());
             System.out.printf("Preço: %.2f \n", products.get(i).getPrice().doubleValue());
             System.out.printf("Descrição: %s \n\n", products.get(i).getDescription());
         }
@@ -34,6 +44,8 @@ public class ProductCrud {
         System.out.print("Descreva o produto: ");
         Menu.scanner.nextLine();
         product.setDescription(Menu.scanner.nextLine());
+
+        product.setCreationDate(LocalDateTime.now());
 
         products.add(product);
 

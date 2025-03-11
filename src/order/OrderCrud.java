@@ -18,12 +18,12 @@ public class OrderCrud {
             System.out.printf("Status: %s \n\n", orders.get(i).getStatus());
 
             System.out.printf("Data de abertura: %d/%d/%d às %d:%d:%d \n", 
-                orders.get(i).getDate().getDayOfMonth(),
-                orders.get(i).getDate().getMonthValue(),
-                orders.get(i).getDate().getYear(),
-                orders.get(i).getDate().getHour(),
-                orders.get(i).getDate().getMinute(),
-                orders.get(i).getDate().getSecond());
+                orders.get(i).getCreationDate().getDayOfMonth(),
+                orders.get(i).getCreationDate().getMonthValue(),
+                orders.get(i).getCreationDate().getYear(),
+                orders.get(i).getCreationDate().getHour(),
+                orders.get(i).getCreationDate().getMinute(),
+                orders.get(i).getCreationDate().getSecond());
 
             if (orders.get(i).getStatus().equals("Entregue") || orders.get(i).getStatus().equals("Cancelado")) {
                 System.out.printf("Data de encerramento: %d/%d/%d às %d:%d:%d \n", 
@@ -55,7 +55,7 @@ public class OrderCrud {
         Menu.scanner.nextLine();
         order.setDescription(Menu.scanner.nextLine());
         order.setStatus(OrderStatus.STATUS1.getName());
-        order.setDate(LocalDateTime.now());
+        order.setCreationDate(LocalDateTime.now());
 
         orders.add(order);
 
@@ -84,12 +84,12 @@ public class OrderCrud {
         System.out.printf("Status: %s \n\n", orders.get(orderNumber).getStatus());
 
         System.out.printf("Data de abertura: %d/%d/%d às %d:%d:%d \n", 
-            orders.get(orderNumber).getDate().getDayOfMonth(),
-            orders.get(orderNumber).getDate().getMonthValue(),
-            orders.get(orderNumber).getDate().getYear(),
-            orders.get(orderNumber).getDate().getHour(),
-            orders.get(orderNumber).getDate().getMinute(),
-            orders.get(orderNumber).getDate().getSecond());
+            orders.get(orderNumber).getCreationDate().getDayOfMonth(),
+            orders.get(orderNumber).getCreationDate().getMonthValue(),
+            orders.get(orderNumber).getCreationDate().getYear(),
+            orders.get(orderNumber).getCreationDate().getHour(),
+            orders.get(orderNumber).getCreationDate().getMinute(),
+            orders.get(orderNumber).getCreationDate().getSecond());
 
         System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getName());
         System.out.printf("Telefone: %s \n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getPhone());
