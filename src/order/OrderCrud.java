@@ -150,7 +150,6 @@ public class OrderCrud {
         }
 
         System.out.print("\nPedido atualizado! \n\n");
-        Menu.scanner.nextLine();
         System.out.print("Pressione Enter para voltar . . .");
         Menu.scanner.nextLine();
     }
