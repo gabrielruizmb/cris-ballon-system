@@ -6,10 +6,18 @@ import customer.CustomerCrud;
 import order.OrderCrud;
 import product.ProductCrud;
 
+// Classe com os métodos responsáveis pelos menus
 public class Menu {
 
+    //Scanner usado em toda a aplicação para ler o teclado do usuário
     public static Scanner scanner = new Scanner(System.in);
     
+    public static void pressEnterToReturn() {
+        scanner.nextLine();
+        System.out.print("\n\nPressione Enter para voltar . . .");
+        scanner.nextLine();
+    }
+
     public static void mainMenu() {
         int choice = 1;
         while (choice != 0) {
@@ -25,20 +33,20 @@ public class Menu {
                 case 1: 
                     productMenu();  
                     break;
-
                 case 2:
                     customerMenu();
                     break;
-
                 case 3:
                     orderMenu();
                     break;
-
                 case 4: 
                     userManual();   
-                    break;
-            
+                    break;           
+                case 0:
+                    System.exit(choice);
                 default:
+                    System.out.print("\nOpção inválida! Escolha entre 0 e 4.");
+                    pressEnterToReturn();
                     break;
             }
         }
@@ -70,9 +78,12 @@ public class Menu {
 
                 case 4:
                     ProductCrud.read();
-                    break;
-            
+                    break; 
+                case 0:
+                    break;         
                 default:
+                    System.out.print("\nOpção inválida! Escolha entre 0 e 4.");
+                    pressEnterToReturn();
                     break;
             }
         }
@@ -102,7 +113,11 @@ public class Menu {
                 case 4:
                     CustomerCrud.read();
                     break;
+                case 0:
+                    break;  
                 default:
+                    System.out.print("\nOpção inválida! Escolha entre 0 e 4.");
+                    pressEnterToReturn();
                     break;
             }
         }
@@ -132,8 +147,11 @@ public class Menu {
                 case 4:
                     OrderCrud.read();
                     break;
-
+                case 0:
+                    break;  
                 default:
+                    System.out.print("\nOpção inválida! Escolha entre 0 e 4.");
+                    pressEnterToReturn();
                     break;
             }
         }
@@ -143,13 +161,11 @@ public class Menu {
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
         System.out.print("~~~Manual do usuário~~~\n\n");
         
-        System.out.println("1) Use o teclado para navegar pelo sistema \n");
-        System.out.println("2) Ao informar valores em dinheiro, não utilize");
-        System.out.println("   vírgula, apenas ponto para separar o valor");
-        System.out.println("   inteiro dos centavos. Ex: 1200.35 ou 0.99 \n");
+        System.out.print("1) Use o teclado para navegar pelo sistema \n\n");
+        System.out.print("2) Ao informar valores em dinheiro, não utilize \n");
+        System.out.print("   vírgula, apenas ponto para separar o valor \n");
+        System.out.print("   inteiro dos centavos. Ex: 1200.35 ou 0.99 \n");
 
-        Menu.scanner.nextLine();
-        System.out.print("Pressione Enter para voltar . . .");
-        Menu.scanner.nextLine();
+        pressEnterToReturn();
     }
 }
