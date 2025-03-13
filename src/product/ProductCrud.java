@@ -29,15 +29,26 @@ public class ProductCrud {
     }
 
     public static void create() {
-        Product product = new Product();
+        Product product = new Product();    // Cria novo produto vazio.
 
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
-        System.out.print("~~~Cadastrar novo produto~~~\n\n");
+        System.out.print("~~~Cadastrar novo produto~~~\n");
+        
+        Menu.scanner.nextLine();    // Limpa o buffer do teclado.
+        
+        // Começo do loop que é quebrado ao usuário informar 
+        // um nome de produto válido, ou cancelar a operação.
+        while (true) {  // True para forçar um loop infinito.
+            System.out.print("\nInforme o nome do produto: ");
+            
+            // Se o nome for válido, encerra o loop.
+            if(product.setName(Menu.scanner.nextLine()))
+                break;        
 
-        System.out.print("Informe o nome do produto: ");
-        Menu.scanner.nextLine();
-        product.setName(Menu.scanner.nextLine());
-
+            System.out.print("\nO nome do produto não deve estar em branco!");
+        }
+        // Fim do loop de definição do nome do produto.
+        
         System.out.print("Informe o preço do produto: ");
         product.setPrice(Menu.scanner.next());
 

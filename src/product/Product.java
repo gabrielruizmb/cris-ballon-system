@@ -10,8 +10,12 @@ public class Product extends CreationDate{
     private BigDecimal price;
     private String description;
 
-    public void setName(String name) {
+    public boolean setName(String name) {
+        if (name.isBlank())
+            return false;
+            
         this.name = name;
+        return true;
     }
 
     public String getName() {
