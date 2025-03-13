@@ -63,7 +63,7 @@ public class Menu {
     }
 
     private static void productMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu produtos~~~\n\n");
@@ -101,7 +101,7 @@ public class Menu {
     }
 
     private static void customerMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu clientes~~~\n\n");
@@ -136,7 +136,7 @@ public class Menu {
     }
 
     public static void orderMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu de pedidos~~~\n\n");
