@@ -6,9 +6,9 @@ import system.CreationDate;
 
 // Herdando atributos e métodos da classe CreationDate
 public class Order extends CreationDate {
-    int clientNumber;
-    String description;
-    String status;
+    private int clientNumber;
+    private String description;
+    private String status;
     //LocalDateTime creationDate;       <-- Agora herdamos este atributo e os 
     //                                      métodos da classe CreationDate.
     LocalDateTime closingDate;
