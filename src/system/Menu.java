@@ -12,6 +12,15 @@ public class Menu {
     //Scanner usado em toda a aplicação para ler o teclado do usuário
     public static Scanner scanner = new Scanner(System.in);
     
+    public static int tryToReadTheOption(int choice) {
+        // Tenta ler um inteiro do teclado, se não conseguir, prossegue
+        // para a instrução default do switch case.
+        try {    
+            choice = scanner.nextInt();
+        } catch(Exception exception) {}
+        return choice;
+    }
+
     public static void pressEnterToReturn() {
         scanner.nextLine();
         System.out.print("\n\nPressione Enter para voltar . . .");
@@ -19,7 +28,7 @@ public class Menu {
     }
 
     public static void mainMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n=========================\n");
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
@@ -27,7 +36,8 @@ public class Menu {
             System.out.print(" 1.Produtos \n 2.Clientes \n 3.Pedidos \n");
             System.out.print(" 4.Manual do usuário \n\n 0.Sair \n\n");
             System.out.print("Escolha uma opção: ");
-            choice = scanner.nextInt();
+            
+            choice = tryToReadTheOption(choice);
     
             switch (choice) {
                 case 1: 
@@ -53,7 +63,7 @@ public class Menu {
     }
 
     private static void productMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu produtos~~~\n\n");
@@ -61,8 +71,9 @@ public class Menu {
             System.out.print(" 3.Excluir produto \n 4.Ver produtos");
             System.out.print(" \n\n 0.Voltar \n\n");
             System.out.print("Escolha uma opção: ");
-            choice = scanner.nextInt();
     
+            choice = tryToReadTheOption(choice);
+
             switch (choice) {
                 case 1:
                     ProductCrud.create();
@@ -90,7 +101,7 @@ public class Menu {
     }
 
     private static void customerMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu clientes~~~\n\n");
@@ -98,7 +109,8 @@ public class Menu {
             System.out.print(" 3.Excluir cliente \n 4.Ver clientes");
             System.out.print(" \n\n 0.Voltar \n\n");
             System.out.print("Escolha uma opção: ");
-            choice = scanner.nextInt();
+            
+            choice = tryToReadTheOption(choice);
 
             switch (choice) {
                 case 1:
@@ -124,7 +136,7 @@ public class Menu {
     }
 
     public static void orderMenu() {
-        int choice = 1;
+        int choice = 5;
         while (choice != 0) {
             System.out.print("\n---SISTEMA CRIS BALLON---\n");
             System.out.print("~~~Menu de pedidos~~~\n\n");
@@ -132,7 +144,8 @@ public class Menu {
             System.out.print(" 3.Excluir pedido \n 4.Ver pedidos");
             System.out.print(" \n\n 0.Voltar \n\n");
             System.out.print("Escolha uma opção: ");
-            choice = scanner.nextInt();
+
+            choice = tryToReadTheOption(choice);
 
             switch (choice) {
                 case 1:
