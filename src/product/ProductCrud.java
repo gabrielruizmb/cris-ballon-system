@@ -105,8 +105,27 @@ public class ProductCrud {
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
         System.out.print("~~~Editar um produto~~~\n");
         listAll();
-        System.out.print("Escolha um produto pelo n.° para editar: ");
-        productNumber = Menu.scanner.nextInt();
+
+        while (true) {
+            System.out.print("Escolha um produto pelo n.° para editar: ");
+
+            // Tenta ver se o produto existe.
+            try {
+                productNumber = Menu.scanner.nextInt();
+                products.get(productNumber);
+
+                break;
+            // Se não existir, informa ao usuário.
+            } catch(Exception exception) {
+                System.out.print("\nNúmero de produto inválido!");
+            
+                Menu.scanner.nextLine();
+                System.out.print("\n\nPressione Enter para voltar . . .");
+                Menu.scanner.nextLine();
+
+                return;
+            }
+        }
 
         System.out.printf("\nProduto n.° %d \n", productNumber);
 
@@ -156,19 +175,22 @@ public class ProductCrud {
     }
 
     public static void delete() {
-        int productNumber;
-
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
         System.out.print("~~~Excluir um produto~~~\n");
         listAll();
         System.out.print("Escolha um produto pelo n.° para excluir: ");
-        productNumber = Menu.scanner.nextInt();
 
-        products.remove(productNumber);
-        System.out.print("\nProduto excluido!\n\n");
+        // Tenta excluir o produto.
+        try {
+            products.remove(Menu.scanner.nextInt());
+            System.out.print("\nProduto excluido!");
+        // Se não conseguir, informa ao usuário.
+        } catch(Exception exception) {
+            System.out.print("\nNúmero de produto inválido!");
+        }
         
         Menu.scanner.nextLine();
-        System.out.print("Pressione Enter para voltar . . .");
+        System.out.print("\n\nPressione Enter para voltar . . .");
         Menu.scanner.nextLine();
     }
 }
