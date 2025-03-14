@@ -22,16 +22,25 @@ public class Product extends CreationDate{
         return this.name;
     }
 
-    public void setPrice(String price) {
-        this.price = new BigDecimal(price);
+    public boolean setPrice(String price) {
+        try {
+            this.price = new BigDecimal(price);
+            return true;
+        } catch(Exception exception) {
+            return false;
+        }
     }
 
     public BigDecimal getPrice() {
         return this.price;
     }
 
-    public void setDescription(String description) {
+    public boolean setDescription(String description) {
+        if(description.isBlank())
+            return false;
+
         this.description = description;
+        return true;
     }
 
     public String getDescription() {
