@@ -155,31 +155,22 @@ public class OrderCrud {
     }
 
     public static void delete() {
-        int index = 0;
-        String option = "s";
-
         listAll();
-        while (option.equals("s")) {
 
+        while (true) {
             System.out.print("\nInforme o n° do pedido que deseja excluir: ");
-            index = Menu.scanner.nextInt();
-            
-            if (index < 0 || index >= orders.size()) {
-                System.out.print("Número de pedido inválido! ");
-                System.out.print("Informe um n° válido. \n\n");
-                System.out.print("Deseja tentar novamente(s/n)? ");
-                option = Menu.scanner.next();
-                if (!option.equals("s")) {
-                    return;
-                }
-            } else {
-                orders.remove(index);
+
+            try {
+                orders.remove(Menu.scanner.nextInt());
                 System.out.print("\nPedido excluido com sucesso!");
-                Menu.scanner.nextLine();
-                System.out.print("\n\nPressione Enter para voltar . . .");
-                Menu.scanner.nextLine();
-                return;        
+            } catch(Exception exception) {
+                System.out.print("\nNúmero de pedido inválido!");
             }
+            Menu.scanner.nextLine();
+            System.out.print("\n\nPressione Enter para voltar . . .");
+            Menu.scanner.nextLine();
+
+            break;
         }
     }
 }
