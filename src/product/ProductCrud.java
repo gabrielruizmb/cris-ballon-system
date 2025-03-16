@@ -48,33 +48,29 @@ public class ProductCrud {
             System.out.print("\nO nome do produto não deve estar em branco!");
         }
         // Fim do loop de definição do nome do produto.
-        
-        // Começo do loop que é quebrado ao usuário
-        // informar um preço do produto válido.
-        while (true) {  // "true" para forçar um loop infinito.
+
+        // Definição do preço. Usa a mesma lógica do
+        // bloco de código de definição do nome.
+        while (true) { 
             System.out.print("\nPreço: ");
             
-            // Se o preço for válido, quebra o loop
             if(product.setPrice(Menu.scanner.nextLine()))
                 break;        
 
             System.out.print("\nInforme apenas números e pontos para \n");
             System.out.print("o preço, ex(1250.90 ou 0.50)");
         }
-        // Fim do loop de definição do preço do produto.
 
-        // Começo do loop que é quebrado ao usuário 
-        // informar uma descrição do produto válida.
-        while (true) {  // "true" para forçar um loop infinito.
+        // Definição da descrição. Usa a mesma lógica 
+        // do bloco de código da definição do nome.
+        while (true) { 
             System.out.print("\nDescreva o produto: ");
             
-            // Se a descrição for válida, quebra o loop.
             if(product.setDescription(Menu.scanner.nextLine()))
                 break;        
 
             System.out.print("\nA descrição não deve estar em branco!");
         }
-        // Fim do loop de definição do nome do produto.
 
         product.setCreationDate(LocalDateTime.now());
 
@@ -101,6 +97,7 @@ public class ProductCrud {
     // produto é a mesma usada para criá-lo.
     public static void update() {
         int productNumber;
+        String choice = "s";
 
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
         System.out.print("~~~Editar um produto~~~\n");
@@ -127,6 +124,7 @@ public class ProductCrud {
             }
         }
 
+        // Exibe na tela o produto a ser editado.
         System.out.printf("\nProduto n.° %d \n", productNumber);
 
         System.out.printf("Nome: %s \n", 
@@ -140,34 +138,77 @@ public class ProductCrud {
         
         Menu.scanner.nextLine();
 
+        // Loop que é quebrado ao usuário informar o novo nome do 
+        // produto, ou se ele desejar continuar sem trocar o nome.
         while (true) {
-            System.out.print("\nNovo nome: ");
+            System.out.print("Deseja alterar o nome? Sim ou não(s/n)? ");
+            choice = Menu.scanner.next();
+            Menu.scanner.nextLine();
 
-            if(products.get(productNumber).setName(Menu.scanner.nextLine()))
+            if (choice.equals("s")) {
+                while (true) {
+                    System.out.print("\nNovo nome: ");
+        
+                    if(products.get(productNumber).setName(Menu.scanner.nextLine()))
+                        break;
+                    
+                    System.out.print("\nO nome não pode ficar em branco!");
+                }
+                break;
+            } else if (choice.equals("n"))
                 break;
             
-            System.out.print("\nO nome não pode ficar em branco!");
+            System.out.print("\nOpção inválida, escolha 's' ou 'n'!\n");              
         }
 
+        // Loop que é quebrado ao usuário informar o novo preço do 
+        // produto, ou se ele desejar continuar sem trocar o preço.
         while (true) {
-            System.out.print("\nNovo preço: ");
+            System.out.print("Deseja alterar o preço? Sim ou não(s/n)? ");
+            choice = Menu.scanner.next();
+            Menu.scanner.nextLine();
 
-            if(products.get(productNumber).setPrice(Menu.scanner.nextLine()))
+            if (choice.equals("s")) {
+                while (true) {
+                    System.out.print("\nNovo preço: ");
+        
+                    if(products.get(productNumber).setPrice(Menu.scanner.nextLine()))
+                        break;
+        
+                    System.out.print("\nInforme apenas números e pontos para \n");
+                    System.out.print("o preço, ex(1250.90 ou 0.50)");
+                }
                 break;
-
-            System.out.print("\nInforme apenas números e pontos para \n");
-            System.out.print("o preço, ex(1250.90 ou 0.50)");
+            } else if (choice.equals("n"))
+                break;
+            
+            System.out.print("\nOpção inválida, escolha 's' ou 'n'!\n");              
         }
 
+        // Loop que é quebrado ao usuário informar a nova descrição do 
+        // produto, ou se ele desejar continuar sem trocar a descrição.
         while (true) {
-            System.out.print("\nNova descrição: ");
+            System.out.print("Deseja alterar a descrição? Sim ou não(s/n)? ");
+            choice = Menu.scanner.next();
+            Menu.scanner.nextLine();
 
-            if(products.get(productNumber)
-                .setDescription(Menu.scanner.nextLine()))
+            if (choice.equals("s")) {
+                while (true) {
+                    System.out.print("\nNova descrição: ");
+        
+                    if(products.get(productNumber)
+                        .setDescription(Menu.scanner.nextLine()))
+                        break;
+        
+                    System.out.print("\nA descrição não pode ficar em branco!");
+                }
                 break;
-
-            System.out.print("\nA descrição não pode ficar em branco!");
+            } else if (choice.equals("n"))
+                break;
+            
+            System.out.print("\nOpção inválida, escolha 's' ou 'n'!\n");              
         }
+
 
         System.out.print("\nProduto atualizado!\n\n");
         System.out.print("Pressione Enter para voltar . . .");
