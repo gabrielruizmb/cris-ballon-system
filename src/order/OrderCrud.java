@@ -25,8 +25,10 @@ public class OrderCrud {
                 orders.get(i).getCreationDate().getMinute(),
                 orders.get(i).getCreationDate().getSecond());
 
-            if (orders.get(i).getStatus().equals("Entregue") || orders.get(i).getStatus().equals("Cancelado")) {
-                System.out.printf("Data de encerramento: %d/%d/%d às %d:%d:%d \n", 
+            if (orders.get(i).getStatus().equals("Entregue") 
+                || orders.get(i).getStatus().equals("Cancelado")) {
+                System.out.print("Data de encerramento: ");
+                System.out.printf("%d/%d/%d às %d:%d:%d \n",
                     orders.get(i).getClosingDate().getDayOfMonth(),
                     orders.get(i).getClosingDate().getMonthValue(),
                     orders.get(i).getClosingDate().getYear(),
@@ -35,10 +37,19 @@ public class OrderCrud {
                     orders.get(i).getClosingDate().getSecond());
             }    
 
-            System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers.get(orders.get(i).getClientNumber()).getName());
-            System.out.printf("Telefone: %s \n", CustomerCrud.customers.get(orders.get(i).getClientNumber()).getPhone());
-            System.out.printf("Endereço: %s \n\n", CustomerCrud.customers.get(orders.get(i).getClientNumber()).getAddress());
-            System.out.printf("Descrição do pedido: %s \n\n", orders.get(i).getDescription());
+            System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers
+                              .get(orders.get(i).getClientNumber()).getName());
+
+            System.out.printf("Telefone: %s \n", CustomerCrud.customers
+                              .get(orders.get(i).getClientNumber())
+                              .getPhone());
+
+            System.out.printf("Endereço: %s \n\n", CustomerCrud.customers
+                              .get(orders.get(i).getClientNumber())
+                              .getAddress());
+
+            System.out.printf("Descrição do pedido: %s \n\n", orders.get(i)
+                              .getDescription());
         }
     }
 
@@ -81,7 +92,8 @@ public class OrderCrud {
         System.out.print("Escolha um pedido pelo n° para editar: ");
         orderNumber = Menu.scanner.nextInt();
         System.out.printf("\n~~~Editar pedido n°: %d~~~\n", orderNumber);
-        System.out.printf("Status: %s \n\n", orders.get(orderNumber).getStatus());
+        System.out.printf("Status: %s \n\n", orders.get(orderNumber)
+                          .getStatus());
 
         System.out.printf("Data de abertura: %d/%d/%d às %d:%d:%d \n", 
             orders.get(orderNumber).getCreationDate().getDayOfMonth(),
@@ -91,10 +103,20 @@ public class OrderCrud {
             orders.get(orderNumber).getCreationDate().getMinute(),
             orders.get(orderNumber).getCreationDate().getSecond());
 
-        System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getName());
-        System.out.printf("Telefone: %s \n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getPhone());
-        System.out.printf("Endereço: %s \n\n", CustomerCrud.customers.get(orders.get(orderNumber).getClientNumber()).getAddress());
-        System.out.printf("Descrição do pedido: %s \n\n", orders.get(orderNumber).getDescription());
+        System.out.printf("Nome do cliente: %s \n", CustomerCrud.customers
+                          .get(orders.get(orderNumber).getClientNumber())
+                          .getName());
+
+        System.out.printf("Telefone: %s \n", CustomerCrud.customers
+                          .get(orders.get(orderNumber).getClientNumber())
+                          .getPhone());
+
+        System.out.printf("Endereço: %s \n\n", CustomerCrud.customers
+                          .get(orders.get(orderNumber).getClientNumber())
+                          .getAddress());
+
+        System.out.printf("Descrição do pedido: %s \n\n", orders
+                          .get(orderNumber).getDescription());
 
         System.out.print("~~~Novas informações do pedido~~~\n\n");
 
@@ -104,7 +126,9 @@ public class OrderCrud {
             System.out.print("Novo status: \n\n");
     
             for(OrderStatus status : OrderStatus.values()) {
-                System.out.printf("%d)%s \n", status.getNumber(), status.getName());
+                System.out.printf("%d)%s \n", 
+                                  status.getNumber(), 
+                                  status.getName());
             }
     
             System.out.print("\nEscolha um status: ");
@@ -112,19 +136,24 @@ public class OrderCrud {
     
             switch (newStatus) {
                 case 1:
-                    orders.get(orderNumber).setStatus(OrderStatus.STATUS1.getName());
+                    orders.get(orderNumber)
+                        .setStatus(OrderStatus.STATUS1.getName());
                     break;
                 case 2:
-                    orders.get(orderNumber).setStatus(OrderStatus.STATUS2.getName());
+                    orders.get(orderNumber)
+                        .setStatus(OrderStatus.STATUS2.getName());
                     break;
                 case 3:
-                    orders.get(orderNumber).setStatus(OrderStatus.STATUS3.getName());
+                    orders.get(orderNumber)
+                        .setStatus(OrderStatus.STATUS3.getName());
                     break;
                 case 4:
-                    orders.get(orderNumber).setStatus(OrderStatus.STATUS4.getName());
+                    orders.get(orderNumber)
+                        .setStatus(OrderStatus.STATUS4.getName());
                     break;
                 case 5:
-                    orders.get(orderNumber).setStatus(OrderStatus.STATUS5.getName());
+                    orders.get(orderNumber)
+                        .setStatus(OrderStatus.STATUS5.getName());
                     break;
                 default:
                     break;

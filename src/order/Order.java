@@ -58,7 +58,8 @@ public class Order extends CreationDate {
 
     public Order() {}
     
-    public Order(int clientNumber, String description, String status, LocalDateTime creationDate) {
+    public Order(int clientNumber, String description, String status, 
+                 LocalDateTime creationDate) {
         this.clientNumber = clientNumber;
         this.description = description;
         this.status = status;

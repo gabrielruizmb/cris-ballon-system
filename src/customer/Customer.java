@@ -47,7 +47,8 @@ public class Customer extends CreationDate{
 
     public Customer() {}
 
-    public Customer(String name, String phone, String address, LocalDateTime creationDate) {
+    public Customer(String name, String phone, String address, 
+                    LocalDateTime creationDate) {
         this.name = name;
         this.phone = phone;
         this.address = address;
