@@ -22,9 +22,11 @@ public class ProductCrud {
                 products.get(i).getCreationDate().getMinute(),
                 products.get(i).getCreationDate().getSecond());
             
-                System.out.printf("Nome: %s \n", products.get(i).getName());
-            System.out.printf("Preço: %.2f \n", products.get(i).getPrice().doubleValue());
-            System.out.printf("Descrição: %s \n\n", products.get(i).getDescription());
+            System.out.printf("Nome: %s \n", products.get(i).getName());
+            System.out.printf("Preço: %.2f \n", 
+                               products.get(i).getPrice().doubleValue());
+            System.out.printf("Descrição: %s \n\n", 
+                               products.get(i).getDescription());
         }
     }
 
@@ -136,7 +138,7 @@ public class ProductCrud {
         System.out.printf("Descrição: %s \n\n", 
             products.get(productNumber).getDescription());
         
-        Menu.scanner.nextLine();
+        Menu.scanner.nextLine();    // Limpar o buffer do teclado.
 
         // Loop que é quebrado ao usuário informar o novo nome do 
         // produto, ou se ele desejar continuar sem trocar o nome.
@@ -149,7 +151,8 @@ public class ProductCrud {
                 while (true) {
                     System.out.print("\nNovo nome: ");
         
-                    if(products.get(productNumber).setName(Menu.scanner.nextLine()))
+                    if(products.get(productNumber)
+                        .setName(Menu.scanner.nextLine()))
                         break;
                     
                     System.out.print("\nO nome não pode ficar em branco!");
@@ -172,11 +175,12 @@ public class ProductCrud {
                 while (true) {
                     System.out.print("\nNovo preço: ");
         
-                    if(products.get(productNumber).setPrice(Menu.scanner.nextLine()))
+                    if(products.get(productNumber)
+                        .setPrice(Menu.scanner.nextLine()))
                         break;
         
-                    System.out.print("\nInforme apenas números e pontos para \n");
-                    System.out.print("o preço, ex(1250.90 ou 0.50)");
+                    System.out.print("\nInforme apenas números e pontos para");
+                    System.out.print(" o preço, ex(1250.90 ou 0.50)");
                 }
                 break;
             } else if (choice.equals("n"))
@@ -200,7 +204,8 @@ public class ProductCrud {
                         .setDescription(Menu.scanner.nextLine()))
                         break;
         
-                    System.out.print("\nA descrição não pode ficar em branco!");
+                    System.out.print("\nA descrição não pode ");
+                    System.out.print("ficar em branco!");
                 }
                 break;
             } else if (choice.equals("n"))
@@ -224,11 +229,14 @@ public class ProductCrud {
         
         while (true) {
             System.out.print("Escolha um produto pelo n.° para excluir: ");
-            try{
+            try{    // Tenta remover o produto.
                 products.remove(Menu.scanner.nextInt());
                 System.out.print("\nProduto excluido!");
                 break;
-            } catch(Exception exception) {
+            } catch(Exception exception) {  
+                // Se não conseguir, informa ao usuário
+                // as instruções para prosseguir.
+
                 System.out.print("Número de produto inválido!");
                 while (true) {
                     System.out.print("\nDeseja tentar novamente? ");
@@ -252,12 +260,3 @@ public class ProductCrud {
         Menu.scanner.nextLine();
     }
 }
-
-// // Tenta excluir o produto.
-// try {
-//     products.remove(Menu.scanner.nextInt());
-//     System.out.print("\nProduto excluido!");
-// // Se não conseguir, informa ao usuário.
-// } catch(Exception exception) {
-//     System.out.print("\nNúmero de produto inválido!");
-// }

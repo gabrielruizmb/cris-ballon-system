@@ -9,24 +9,36 @@ public class Customer extends CreationDate{
     private String phone;
     private String address;
 
-    public void setName(String name) {
+    public boolean setName(String name) {
+        if(name.isBlank())
+            return false;
+
         this.name = name;
+        return true;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setPhone(String phone) {
+    public boolean setPhone(String phone) {
+        if(phone.isBlank())
+            return false;
+
         this.phone = phone;
+        return true;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setAddress(String address) {
+    public boolean setAddress(String address) {
+        if(address.isBlank())
+            return false;
+        
         this.address = address;
+        return true;
     }
 
     public String getAddress() {
