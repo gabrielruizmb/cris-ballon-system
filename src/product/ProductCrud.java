@@ -216,18 +216,35 @@ public class ProductCrud {
     }
 
     public static void delete() {
+        String choice = "s";
+
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
         System.out.print("~~~Excluir um produto~~~\n");
         listAll();
-        System.out.print("Escolha um produto pelo n.° para excluir: ");
-
-        // Tenta excluir o produto.
-        try {
-            products.remove(Menu.scanner.nextInt());
-            System.out.print("\nProduto excluido!");
-        // Se não conseguir, informa ao usuário.
-        } catch(Exception exception) {
-            System.out.print("\nNúmero de produto inválido!");
+        
+        while (true) {
+            System.out.print("Escolha um produto pelo n.° para excluir: ");
+            try{
+                products.remove(Menu.scanner.nextInt());
+                System.out.print("\nProduto excluido!");
+                break;
+            } catch(Exception exception) {
+                System.out.print("Número de produto inválido!");
+                while (true) {
+                    System.out.print("\nDeseja tentar novamente? ");
+                    System.out.print("Sim ou não(s/n)? ");
+                    choice = Menu.scanner.next();
+    
+                    if(choice.equals("s") || choice.equals("n"))
+                        break;
+                    else
+                        System.out.print("\nOpção inválida!\n");
+                }
+                if(choice.equals("n")) {
+                    System.out.print("\nOperação cancelada!");
+                    break;
+                }
+            }
         }
         
         Menu.scanner.nextLine();
@@ -235,3 +252,12 @@ public class ProductCrud {
         Menu.scanner.nextLine();
     }
 }
+
+// // Tenta excluir o produto.
+// try {
+//     products.remove(Menu.scanner.nextInt());
+//     System.out.print("\nProduto excluido!");
+// // Se não conseguir, informa ao usuário.
+// } catch(Exception exception) {
+//     System.out.print("\nNúmero de produto inválido!");
+// }
