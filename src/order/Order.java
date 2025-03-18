@@ -11,7 +11,7 @@ public class Order extends CreationDate {
     private String status;
     //LocalDateTime creationDate;       <-- Agora herdamos este atributo e os 
     //                                      métodos da classe CreationDate.
-    LocalDateTime closingDate;
+    private LocalDateTime closingDate;
 
     public int getClientNumber() {
         return clientNumber;
@@ -25,8 +25,12 @@ public class Order extends CreationDate {
         return description;
     }
 
-    public void setDescription(String description) {
+    public boolean setDescription(String description) {
+        if(description.isBlank())
+            return false;
+            
         this.description = description;
+        return true;
     }
 
     public String getStatus() {

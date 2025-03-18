@@ -54,18 +54,40 @@ public class OrderCrud {
     }
 
     public static void create() {
+        int clientNumber;
         Order order = new Order();
 
         System.out.print("\n---SISTEMA CRIS BALLON---\n");
         System.out.print("~~~Abrir novo pedido~~~\n\n");
         CustomerCrud.listAll();
-        System.out.print("Escolha um cliente pelo n.°: ");
-        order.setClientNumber(Menu.scanner.nextInt());
-        ProductCrud.listAll();
+
+        while (true) {
+            System.out.print("Escolha um cliente pelo n.°: ");
+            clientNumber = Menu.scanner.nextInt();
+    
+            if(clientNumber < 0 
+                || clientNumber >= CustomerCrud.customers.size())
+                System.out.print("Número de cliente inválido!\n");
+
+            else
+                break;
+        }
+
+        order.setClientNumber(clientNumber);
+
+        ProductCrud.listAll();      
         System.out.print("Descreva o pedido: ");
         Menu.scanner.nextLine();
-        order.setDescription(Menu.scanner.nextLine());
+
+        while (!order.setDescription(Menu.scanner.nextLine())) {
+            System.out.print("A descrição não pode ficar em branco! ");
+            System.out.print("Descreva novamente: ");
+        }
+        
+        // Define o status do pedido como Aberto.
         order.setStatus(OrderStatus.STATUS1.getName());
+
+        // Define a data e hora de criação.
         order.setCreationDate(LocalDateTime.now());
 
         orders.add(order);
@@ -89,8 +111,16 @@ public class OrderCrud {
         System.out.print("\n~~~Editar pedido~~~\n");
         listAll();
         System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        System.out.print("Escolha um pedido pelo n° para editar: ");
-        orderNumber = Menu.scanner.nextInt();
+
+        while (true) {
+            System.out.print("Escolha um pedido pelo n° para editar: ");
+            orderNumber = Menu.scanner.nextInt();
+            if(orderNumber < 0 || orderNumber >= orders.size())
+                System.out.print("Número de pedido inválido!\n");
+            else
+                break;
+        }
+
         System.out.printf("\n~~~Editar pedido n°: %d~~~\n", orderNumber);
         System.out.printf("Status: %s \n\n", orders.get(orderNumber)
                           .getStatus());
@@ -119,45 +149,41 @@ public class OrderCrud {
                           .get(orderNumber).getDescription());
 
         System.out.print("~~~Novas informações do pedido~~~\n\n");
+        
+        for(OrderStatus status : OrderStatus.values()) {
+            System.out.printf("%d)%s \n", 
+            status.getNumber(), 
+            status.getName());
+        }
+        
+        System.out.print("Novo status: ");
+        newStatus = Menu.scanner.nextInt();
 
-        System.out.print("Deseja alterar o status deste pedido(s/n): ");
-        if (Menu.scanner.next().equals("s")) {
-
-            System.out.print("Novo status: \n\n");
-    
-            for(OrderStatus status : OrderStatus.values()) {
-                System.out.printf("%d)%s \n", 
-                                  status.getNumber(), 
-                                  status.getName());
-            }
-    
-            System.out.print("\nEscolha um status: ");
-            newStatus = Menu.scanner.nextInt();
-    
-            switch (newStatus) {
-                case 1:
-                    orders.get(orderNumber)
-                        .setStatus(OrderStatus.STATUS1.getName());
-                    break;
-                case 2:
-                    orders.get(orderNumber)
-                        .setStatus(OrderStatus.STATUS2.getName());
-                    break;
-                case 3:
-                    orders.get(orderNumber)
-                        .setStatus(OrderStatus.STATUS3.getName());
-                    break;
-                case 4:
-                    orders.get(orderNumber)
-                        .setStatus(OrderStatus.STATUS4.getName());
-                    break;
-                case 5:
-                    orders.get(orderNumber)
-                        .setStatus(OrderStatus.STATUS5.getName());
-                    break;
-                default:
-                    break;
-            }
+        switch (newStatus) {
+            case 1:
+                orders.get(orderNumber)
+                    .setStatus(OrderStatus.STATUS1.getName());
+                break;
+            case 2:
+                orders.get(orderNumber)
+                    .setStatus(OrderStatus.STATUS2.getName());
+                break;
+            case 3:
+                orders.get(orderNumber)
+                    .setStatus(OrderStatus.STATUS3.getName());
+                break;
+            case 4:
+                orders.get(orderNumber)
+                    .setStatus(OrderStatus.STATUS4.getName());
+                break;
+            case 5:
+                orders.get(orderNumber)
+                    .setStatus(OrderStatus.STATUS5.getName());
+                break;
+            default:
+                System.out.printf("Status inválido! ");
+                System.out.printf("O status não mudou.");
+                break;
         }
 
         if (newStatus == 4 || newStatus == 5) {
@@ -178,6 +204,7 @@ public class OrderCrud {
             orders.get(orderNumber).setDescription(Menu.scanner.nextLine());
         }
 
+        Menu.scanner.nextLine();
         System.out.print("\nPedido atualizado! \n\n");
         System.out.print("Pressione Enter para voltar . . .");
         Menu.scanner.nextLine();
