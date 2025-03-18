@@ -156,7 +156,7 @@ public class OrderCrud {
             status.getName());
         }
         
-        System.out.print("Novo status: ");
+        System.out.print("\nNovo status: ");
         newStatus = Menu.scanner.nextInt();
 
         switch (newStatus) {
@@ -199,7 +199,7 @@ public class OrderCrud {
 
         System.out.print("\nDeseja alterar a descrição deste pedido(s/n): ");
         if (Menu.scanner.next().equals("s")) {
-            Menu.scanner.nextLine();
+            //Menu.scanner.nextLine();
             System.out.print("Nova descrição: ");
             orders.get(orderNumber).setDescription(Menu.scanner.nextLine());
         }
